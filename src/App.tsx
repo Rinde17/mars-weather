@@ -4,19 +4,25 @@ import './App.css';
 import Layout from "./pages/Layout";
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
+import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
+import { AuthProvider } from "./contexts/AuthContext";
 
-const App = (): JSX.Element => {
+const App: React.FC = () => {
+
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Home />} />
-                    {/*<Route path="blogs" element={<Blogs />} />*/}
-                    {/*<Route path="contact" element={<Contact />} />*/}
-                    <Route path="*" element={<NotFound />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+        <AuthProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Layout />}>
+                        <Route index element={<Home />} />
+                        <Route path="login" element={<LoginForm />} />
+                        <Route path="register" element={<RegisterForm />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </AuthProvider>
     );
 }
 

@@ -1,7 +1,58 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Outlet, Link } from "react-router-dom";
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
+import {AuthContext} from "../contexts/AuthContext";
 
-const Layout = (): JSX.Element => {
+const Layout = () => {
+
+    const { user, setUser } = useContext(AuthContext);
+
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            setUser({
+                uid: '',
+                email: ''
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    function isLogged() {
+        if (user.uid !== '') {
+            return (
+                <ul className="navbar-nav me-auto">
+                    <li className="nav-item">
+                        <a className="nav-link" href={"#"} onClick={handleLogout}>Logout</a>
+                    </li>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true" aria-expanded="false">{user.email}</a>
+                        <div className="dropdown-menu">
+                            <a className="dropdown-item" href="#">Action</a>
+                            <a className="dropdown-item" href="#">Another action</a>
+                            <a className="dropdown-item" href="#">Something else here</a>
+                            <div className="dropdown-divider"></div>
+                            <a className="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </li>
+                </ul>
+            );
+        } else {
+            return (
+                <ul className="navbar-nav me-auto">
+                    <li className="nav-item">
+                        <Link to="/login" className="nav-link">Login</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/register" className="nav-link">Register</Link>
+                    </li>
+                </ul>
+            );
+        }
+    }
 
     return (
         <>
@@ -28,25 +79,7 @@ const Layout = (): JSX.Element => {
                         </ul>
                     </div>
                     <div className="d-flex">
-                        <ul className="navbar-nav me-auto">
-                            <li className="nav-item">
-                                <Link to="/login" className="nav-link">Login</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/register" className="nav-link">Register</Link>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                   aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                                <div className="dropdown-menu">
-                                    <a className="dropdown-item" href="#">Action</a>
-                                    <a className="dropdown-item" href="#">Another action</a>
-                                    <a className="dropdown-item" href="#">Something else here</a>
-                                    <div className="dropdown-divider"></div>
-                                    <a className="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </li>
-                        </ul>
+                        {isLogged()}
                     </div>
                 </div>
             </nav>
