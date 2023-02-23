@@ -63,18 +63,15 @@ const Layout = () => {
                         <ul className="navbar-nav me-auto">
                             <li className="nav-item">
                                 <Link to="/" className="nav-link active">
-                                    Accueil
+                                    Données météo
                                     <span className="visually-hidden">(current)</span>
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Features</a>
+                                <a className="nav-link" href="#">Photographies</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Pricing</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">About</a>
+                                <a className="nav-link" href="#">A propos</a>
                             </li>
                         </ul>
                     </div>
