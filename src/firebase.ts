@@ -3,12 +3,12 @@ import { getAuth } from '@firebase/auth';
 import { getFirestore } from '@firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCoU4uIGCTptepw62q7SxuCVsXnk7l7XpY",
-    authDomain: "marsweather2-b9d05.firebaseapp.com",
-    projectId: "marsweather2-b9d05",
-    storageBucket: "marsweather2-b9d05.appspot.com",
-    messagingSenderId: "426966129400",
-    appId: "1:426966129400:web:3a65924f805bab36cbf90d"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_ID,
 }
 
 const app = initializeApp(firebaseConfig);
