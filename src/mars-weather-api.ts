@@ -1,0 +1,1 @@
+export const API_URL = `https://api.nasa.gov/insight_weather/?api_key=${process.env.REACT_APP_API_WEATHER_MARS_KEY}&feedtype=json&ver=1.0`;
