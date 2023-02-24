@@ -1,14 +1,6 @@
-import React from "react"
-import { PreviousWrapper, Toggle, PreviousDays, PreviousDay } from "./PreviousStyles"
-import { Weather } from "../../types/WeatherType";
-
-type PreviousProps = {
-    isMetric: boolean
-    previous: boolean
-    setPrevious: React.Dispatch<React.SetStateAction<boolean>>
-    setSelectedSol: React.Dispatch<React.SetStateAction<number>>
-    weather: Weather[]
-}
+import React from "react";
+import { PreviousWrapper, Toggle, PreviousDays, PreviousDay } from "./PreviousStyles";
+import { PreviousProps } from "../../types/PreviousProps";
 
 const Previous = ({
                       isMetric,
@@ -27,20 +19,20 @@ const Previous = ({
             <span className="sr-only">Show previous weather</span>
         </Toggle>
 
-        <h2 className="main-title previous-weather__title">Previous 7 days</h2>
+        <h2 className="main-title previous-weather__title">Les 7 derniers jours</h2>
         <PreviousDays>
             {weather.map((sol, i) => (
                 <PreviousDay key={sol.sol} previous={previous}>
                     <h3 className="previous-day__sol">
                         <span>{sol.sol}</span>
-                        {/*<p className="previous-day__date">{sol.date}</p>*/}
+                        <p className="previous-day__date">{sol.date.toString()}</p>
                         <p className="previous-day__temp">
-                            High:
+                            Max:{" "}
                             <span>{sol.maxTemp}</span>
                             <span>{isMetric ? " °C" : " °C"}</span>
                         </p>
                         <p className="previous-day__temp">
-                            Low:
+                            Min:{" "}
                             <span>{sol.minTemp}</span>
                             <span>{isMetric ? " °C" : " °C"}</span>
                         </p>
@@ -48,7 +40,7 @@ const Previous = ({
                             className="previous-day__more-info"
                             onClick={() => setSelectedSol(i)}
                         >
-                            More info
+                            Afficher
                         </button>
                     </h3>
                 </PreviousDay>
@@ -57,4 +49,4 @@ const Previous = ({
     </PreviousWrapper>
 )
 
-export default Previous
+export default Previous;

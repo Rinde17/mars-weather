@@ -1,1 +1,2 @@
-export const API_URL = `https://api.nasa.gov/insight_weather/?api_key=${process.env.REACT_APP_API_WEATHER_MARS_KEY}&feedtype=json&ver=1.0`;
+// export const API_URL = `https://api.nasa.gov/insight_weather/?api_key=${process.env.REACT_APP_API_WEATHER_MARS_KEY}&feedtype=json&ver=1.0`;
+export const API_URL = "https://mars.nasa.gov/rss/api/?feed=weather&category=insight_temperature&feedtype=json&ver=1.0";

@@ -1,10 +1,6 @@
-import React from "react"
-import { UnitStyles, Toggle } from "./UnitStyles"
-
-type UnitProps = {
-    metric: boolean
-    setMetric: React.Dispatch<React.SetStateAction<boolean>>
-}
+import React from "react";
+import { UnitStyles, Toggle } from "./UnitStyles";
+import { UnitProps } from "../../types/UnitProps";
 
 const Unit = ({ metric, setMetric }: UnitProps): JSX.Element => (
     <UnitStyles>
@@ -14,4 +10,4 @@ const Unit = ({ metric, setMetric }: UnitProps): JSX.Element => (
     </UnitStyles>
 )
 
-export default Unit
+export default Unit;

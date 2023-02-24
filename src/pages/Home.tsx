@@ -14,19 +14,18 @@ import { Info, Previous, Unit, WeatherData } from '../components/index';
 
 const Home = () => {
 
-    const [loading, setLoading] = useState<boolean>(true)
-    const [weather, setWeather] = useState<Weather[] | []>([])
-    const [selectedSol, setSelectedSol] = useState<number>(0)
-    const [metric, setMetric] = useState<boolean>(true)
-    const [previous, setPrevious] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(true);
+    const [weather, setWeather] = useState<Weather[] | []>([]);
+    const [selectedSol, setSelectedSol] = useState<number>(0);
+    const [metric, setMetric] = useState<boolean>(true);
+    const [previous, setPrevious] = useState<boolean>(false);
 
-    console.log(weather);
     useEffect(() => {
         const fetchFromAPI = async () => {
             // first "await": wait for data to be retrieved from API
             // second "await": wait for data to be converted to json
-            const res = await fetch(API_URL)
-            const weather = await res.json()
+            const res = await fetch(API_URL);
+            const weather = await res.json();
             const marsWeather = weather.sol_keys.map((key: string) => {
                 return {
                     sol: key,
@@ -36,16 +35,16 @@ const Home = () => {
                     windDirectionDegrees:
                         weather[key].WD?.most_common?.compass_degrees ?? 0,
                     date: formatDate(new Date(weather[key].First_UTC))
-                }
-            })
-            setWeather(marsWeather)
+                };
+            });
+            setWeather(marsWeather);
             // set the default selected day to the most recent/latest
-            setSelectedSol(marsWeather.length - 1)
-            setLoading(false)
+            setSelectedSol(marsWeather.length - 1);
+            setLoading(false);
         }
 
-        fetchFromAPI()
-    }, [])
+        fetchFromAPI();
+    }, []);
 
     return (
         <>
@@ -57,7 +56,7 @@ const Home = () => {
                     ) : (
                         <>
                             <h1 className="main-title">
-                                Latest Weather at Elysium Plantitia
+                                Dernière météo pour Elysium Plantitia
                             </h1>
                             <WeatherData sol={weather[selectedSol]} isMetric={metric} />
                             <InfoWrapper>
@@ -76,7 +75,7 @@ const Home = () => {
                 />
             </AppWrapper>
         </>
-    )
+    );
 
 }
 

@@ -37,8 +37,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     background-image: url(${({ bgImage }: { bgImage: BGImage }) => bgImage});
-    background-size: cover;
-    height: 100vh;
+    background-position: center;
     color: var(--clr-light);
   }
   h1, h2, h3 {
