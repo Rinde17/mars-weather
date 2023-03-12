@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from "react-router-dom";
 import { auth, firestore } from '../firebase';
 import {AuthContext} from "../contexts/AuthContext";
-import { collection, addDoc } from "firebase/firestore";
+import {collection, addDoc, setDoc, doc} from "firebase/firestore";
 
 const RegisterForm: React.FC = () => {
     const [registerEmail, setRegisterEmail] = useState('');
@@ -27,12 +27,19 @@ const RegisterForm: React.FC = () => {
                     first_name: registerFirstName || '',
                 });
 
-              await addDoc(collection(firestore, "Users"), {
+              await setDoc(doc(firestore, "Users", result.user.uid), {
                 uid: result.user.uid,
                 last_name: registerLastName,
                 first_name: registerFirstName,
                 email: result.user.email,
-              });
+              })
+
+              // await addDoc(collection(firestore, `Users`), {
+              //   uid: result.user.uid,
+              //   last_name: registerLastName,
+              //   first_name: registerFirstName,
+              //   email: result.user.email,
+              // });
 
                 navigate('/');
             }
@@ -55,7 +62,7 @@ const RegisterForm: React.FC = () => {
                 <input type="text" className="form-control" id={"last_name"}
                        onChange={e => setRegisterLastName(e.target.value)}
                        placeholder={"Votre nom"}/>
-                <label htmlFor={"first_name"}>Adresse e-mail</label>
+                <label htmlFor={"first_name"}>Prénom</label>
                 <input type="text" className="form-control" id={"first_name"}
                        onChange={e => setRegisterFirstName(e.target.value)}
                        placeholder={"Votre prénom"}/>

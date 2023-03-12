@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react';
-import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from "react-router-dom";
 import {auth, firestore} from '../firebase';
 import { AuthContext } from "../contexts/AuthContext";
 import { getDocs,collection, query, where } from "firebase/firestore";
 
 
-const RegisterForm: React.FC = () => {
+const LoginForm: React.FC = () => {
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
 
@@ -76,4 +76,4 @@ const RegisterForm: React.FC = () => {
     )
 }
 
-export default RegisterForm;
+export default LoginForm;
