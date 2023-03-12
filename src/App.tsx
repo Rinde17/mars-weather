@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import { AuthProvider } from "./contexts/AuthContext";
+import Profile from "./pages/Profile";
 
 const App: React.FC = () => {
 
@@ -18,6 +19,7 @@ const App: React.FC = () => {
                         <Route index element={<Home />} />
                         <Route path="login" element={<LoginForm />} />
                         <Route path="register" element={<RegisterForm />} />
+                        <Route path="profile" element={<Profile />} />
                         <Route path="*" element={<NotFound />} />
                     </Route>
                 </Routes>
