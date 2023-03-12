@@ -1,18 +1,20 @@
 import React, { useContext } from 'react'
-import { Navigate, useLocation } from 'react-router-dom'
-import { AuthContext } from '../providers/AuthProvider'
+import { Navigate, useLocation } from 'react-router-dom';
+import {AuthContext} from "../contexts/AuthContext";
+import Profile from "../pages/Profile";
 
-const ProtectedRoute = ({ children }) => {
-    const { user } = useContext(AuthContext)
-    const location = useLocation()
 
-    if (!user) {
+const ProtectedRoute = () => {
+    const { user } = useContext(AuthContext);
+    const location = useLocation();
+
+    if (user.uid === '') {
         // Si l'utilisateur n'est pas connecté, je le redirige vers la page de connexion
         return <Navigate to='/login' state={{ from: location }} />
     }
 
     // Si l'utilisateur est connecté, alors je retourne le composant enfant
-    return children
+    return <Profile />
 }
 
 export default ProtectedRoute

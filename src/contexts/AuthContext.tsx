@@ -25,20 +25,22 @@ export const AuthProvider = ({ children }: UserProviderProps) => {
         first_name: ''
     });
 
-    useEffect(() => {
+    useEffect( () => {
         const unsubscride = onAuthStateChanged(auth, async (currentUser) => {
 
-            // faire un get dans firestore pour le last_name et le first_name
-            const q = query(collection(firestore, "Users"), where("uid", "==", currentUser?.uid));
-            const doc = await getDocs(q);
-            const data = doc.docs[0].data();
+            if (currentUser) {
+                // faire un get dans firestore pour le last_name et le first_name
+                const q = query(collection(firestore, "Users"), where("uid", "==", currentUser?.uid));
+                const doc = await getDocs(q);
+                const data = doc.docs[0].data();
 
-            setUser({
-                uid: currentUser?.uid || '',
-                email: currentUser?.email || '',
-                last_name: data.last_name || '',
-                first_name: data.first_name || '',
-            });
+                setUser({
+                    uid: currentUser?.uid || '',
+                    email: currentUser?.email || '',
+                    last_name: data.last_name || '',
+                    first_name: data.first_name || '',
+                });
+            }
         })
 
         return unsubscride;

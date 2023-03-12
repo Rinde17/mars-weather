@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from "react-router-dom";
 import { auth, firestore } from '../firebase';
 import {AuthContext} from "../contexts/AuthContext";
-import {collection, addDoc, setDoc, doc} from "firebase/firestore";
+import { setDoc, doc} from "firebase/firestore";
 
 const RegisterForm: React.FC = () => {
     const [registerEmail, setRegisterEmail] = useState('');
@@ -57,28 +57,41 @@ const RegisterForm: React.FC = () => {
               <h1>Inscrivez-vous</h1>
             </div>
             <div className="card-body">
-              <div className="form-group">
-                <label htmlFor={"last_name"}>Nom</label>
-                <input type="text" className="form-control" id={"last_name"}
-                       onChange={e => setRegisterLastName(e.target.value)}
-                       placeholder={"Votre nom"}/>
-                <label htmlFor={"first_name"}>Prénom</label>
-                <input type="text" className="form-control" id={"first_name"}
-                       onChange={e => setRegisterFirstName(e.target.value)}
-                       placeholder={"Votre prénom"}/>
+              <div className="row">
+                <div className="col">
+                  <div className="form-group">
+                    <label htmlFor={"last_name"}>Nom</label>
+                    <input type="text" className="form-control" id={"last_name"}
+                           onChange={e => setRegisterLastName(e.target.value)}
+                           placeholder={"Votre nom"}/>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="form-group">
+                    <label htmlFor={"first_name"}>Prénom</label>
+                    <input type="text" className="form-control" id={"first_name"}
+                           onChange={e => setRegisterFirstName(e.target.value)}
+                           placeholder={"Votre prénom"}/>
+                  </div>
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor={"email"}>Adresse e-mail</label>
-                <input type="email" className="form-control" id={"email"}
-                       onChange={e => setRegisterEmail(e.target.value)}
-                       placeholder={"Entrez votre adresse e-mail"}/>
+              <div className="row">
+                <div className="form-group">
+                  <label htmlFor={"email"}>Adresse e-mail</label>
+                  <input type="email" className="form-control" id={"email"}
+                         onChange={e => setRegisterEmail(e.target.value)}
+                         placeholder={"Entrez votre adresse e-mail"}/>
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor={"password"}>Mot de passe</label>
-                <input type="password" className="form-control" id={"password"}
-                       onChange={e => setRegisterPassword(e.target.value)}
-                       placeholder={"Entrez votre mot de passe"}/>
+              <div className="row">
+                <div className="form-group">
+                  <label htmlFor={"password"}>Mot de passe</label>
+                  <input type="password" className="form-control" id={"password"}
+                         onChange={e => setRegisterPassword(e.target.value)}
+                         placeholder={"Entrez votre mot de passe"}/>
+                </div>
               </div>
+
             </div>
             <button className="btn btn-danger btn-block" onClick={handleRegister}>Inscription</button>
           </div>

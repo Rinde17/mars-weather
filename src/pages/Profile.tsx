@@ -45,17 +45,23 @@ const Profile = () => {
                        value={user.email} disabled={true}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor={"last_name"}>Nom</label>
-                <input type="text" className="form-control" id={"last_name"}
-                       defaultValue={user.last_name}
-                       onChange={e => setLastName(e.target.value)}/>
-              </div>
-              <div className="form-group">
-                <label htmlFor={"first_name"}>Prénom</label>
-                <input type="text" className="form-control" id={"first_name"}
-                       defaultValue={user.first_name}
-                       onChange={e => setFirstName(e.target.value)}/>
+              <div className="row">
+                <div className="col">
+                  <div className="form-group">
+                    <label htmlFor={"last_name"}>Nom</label>
+                    <input type="text" className="form-control" id={"last_name"}
+                           defaultValue={user.last_name}
+                           onChange={e => setLastName(e.target.value)}/>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="form-group">
+                    <label htmlFor={"first_name"}>Prénom</label>
+                    <input type="text" className="form-control" id={"first_name"}
+                           defaultValue={user.first_name}
+                           onChange={e => setFirstName(e.target.value)}/>
+                  </div>
+                </div>
               </div>
             </div>
             <button className="btn btn-danger btn-block" onClick={handleUpdate}>Modifier infos</button>

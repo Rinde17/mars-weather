@@ -52,15 +52,14 @@ const LoginForm: React.FC = () => {
                                 <input type="email" className="form-control" id={"email"}
                                        onChange={e => setLoginEmail(e.target.value)}
                                        placeholder={"Entrez votre adresse e-mail"}/>
-                            </div>
-                        </div>
-                        <div className="card-body">
-                            <div className="form-group">
+                            </div><
+                            div className="form-group">
                                 <label htmlFor={"password"}>Mot de passe</label>
                                 <input type="password" className="form-control" id={"password"}
-                                       onChange={e => setLoginPassword(e.target.value)}
-                                       placeholder={"Entrez votre mot de passe"}/>
+                                        onChange={e => setLoginPassword(e.target.value)}
+                                        placeholder={"Entrez votre mot de passe"}/>
                             </div>
+
                         </div>
                         <button className="btn btn-danger btn-block" onClick={handleLogin}>Connexion</button>
                     </div>
